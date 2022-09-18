@@ -2,7 +2,7 @@ import { StyledDiv } from "./styles";
 
 const Input = ({ isSearch, iconImage, ...rest }) => {
   return (
-    <StyledDiv isSearch>
+    <StyledDiv isSearch={isSearch}>
       <img src={iconImage} alt='icon input' />
       <input {...rest} />
     </StyledDiv>
