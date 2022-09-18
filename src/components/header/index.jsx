@@ -5,10 +5,16 @@ import ChefHatIcon from "../../assets/chefHat";
 import { FaRegListAlt, FaRegUserCircle } from "react-icons/fa";
 
 import Input from "../input";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
+  const history = useHistory();
+
+  const logoof = () => {
+    localStorage.clear();
+    history.push("/");
+  };
 
   return (
     <StyledHeader>
@@ -23,16 +29,18 @@ const Header = () => {
         />
         <DivButtons>
           <StyledButton
-            selected={location.pathname === "/pedidos" ? true : false}>
+            selected={location.pathname === "/pedidos" ? true : false}
+            onClick={() => history.push("/pedidos")}>
             <ChefHatIcon />
             Pedidos
           </StyledButton>
           <StyledButton
-            selected={location.pathname === "/receitas" ? true : false}>
+            selected={location.pathname === "/receitas" ? true : false}
+            onClick={() => history.push("/receitas")}>
             <FaRegListAlt />
             Receitas
           </StyledButton>
-          <StyledButton>
+          <StyledButton onClick={logoof}>
             <FaRegUserCircle />
             Sair
           </StyledButton>
