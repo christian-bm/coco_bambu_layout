@@ -6,6 +6,7 @@ const SolicitationsContext = createContext();
 export const SolicitationProvider = ({ children }) => {
   const [solicitations, setSolicitations] = useState([]);
   const [numberNewSolicitations, setNumberNewSolicitations] = useState(0);
+  const [currentSolicitation, setCurrentSolicitation] = useState({});
 
   const getSolicitations = () => {
     api.get("/solicitations").then(({ data }) => {
@@ -16,13 +17,26 @@ export const SolicitationProvider = ({ children }) => {
     });
   };
 
+  const filterSolicitations = async (value) => {
+    api.get(`/solicitations?name=${value}`).then(({ data }) => {
+      setSolicitations(data.reverse());
+    });
+  };
+
   useEffect(() => {
     getSolicitations();
   }, []);
 
   return (
     <SolicitationsContext.Provider
-      value={{ solicitations, numberNewSolicitations }}>
+      value={{
+        solicitations,
+        numberNewSolicitations,
+        currentSolicitation,
+        setCurrentSolicitation,
+        getSolicitations,
+        filterSolicitations,
+      }}>
       {children}
     </SolicitationsContext.Provider>
   );

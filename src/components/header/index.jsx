@@ -2,18 +2,23 @@ import { StyledHeader, StyledButton, StyledDiv, DivButtons } from "./styles";
 import logoMini from "../../assets/images/logo-coco-bambu-mini.png";
 import iconSearch from "../../assets/images/icon-busca.png";
 import ChefHatIcon from "../../assets/chefHat";
-import { FaRegListAlt, FaRegUserCircle } from "react-icons/fa";
-
 import Input from "../input";
-import { useLocation, useHistory } from "react-router-dom";
+import { useToken } from "../../providers/token";
 
-const Header = () => {
+import { FaRegListAlt, FaRegUserCircle } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+const Header = ({ onChangeInput }) => {
+  const { register } = useForm();
+  const { setToken } = useToken();
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const logoof = () => {
+    setToken("");
     localStorage.clear();
-    history.push("/");
+    navigate("/");
   };
 
   return (
@@ -26,17 +31,21 @@ const Header = () => {
           iconImage={iconSearch}
           isSearch
           placeholder='Buscar receita...'
+          register={register}
+          name='search'
+          autoComplete='off'
+          onChange={(e) => onChangeInput(e.target.value)}
         />
         <DivButtons>
           <StyledButton
             selected={location.pathname === "/pedidos" ? true : false}
-            onClick={() => history.push("/pedidos")}>
+            onClick={() => navigate("/pedidos")}>
             <ChefHatIcon />
             Pedidos
           </StyledButton>
           <StyledButton
             selected={location.pathname === "/receitas" ? true : false}
-            onClick={() => history.push("/receitas")}>
+            onClick={() => navigate("/receitas")}>
             <FaRegListAlt />
             Receitas
           </StyledButton>
