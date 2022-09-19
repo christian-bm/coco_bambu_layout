@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const CardContainer = styled.li`
   width: 100%;
-  height: 240px;
-  padding: 40px 0px;
+  height: 210px;
+  border-bottom: 0.5px solid var(--cl-white1);
 `;
 
 export const CardContent = styled.div`
@@ -17,7 +17,7 @@ export const DivDetails = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 38%;
+  width: 37%;
   margin-left: 20px;
 
   h3 {
@@ -26,7 +26,18 @@ export const DivDetails = styled.div`
 
   p {
     margin-top: 15px;
-    font-size: 12px;
+    font-size: 11px;
+    padding-right: 5%;
+  }
+
+  @media (min-width: 1024px) {
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -62,6 +73,7 @@ export const DivTime = styled.div`
 export const DivCircles = styled.div`
   display: flex;
   align-items: center;
-  margin-left: auto;
-  gap: 10px;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 16px;
 `;

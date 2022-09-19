@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../../providers/token";
 import api from "../../services/api";
+import { useEffect } from "react";
 
 const Login = () => {
   const { numberNewSolicitations } = useSolicitations();
@@ -30,9 +31,11 @@ const Login = () => {
     });
   };
 
-  if (token) {
-    navigate("/pedidos");
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/pedidos");
+    }
+  }, [token, navigate]);
   return (
     <StyledMain>
       <DivContainer>

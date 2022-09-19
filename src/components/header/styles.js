@@ -4,19 +4,21 @@ export const StyledHeader = styled.header`
   background-color: var(--cl-grey1);
   width: 100%;
   height: 70px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const StyledDiv = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 100%;
   max-width: 1440px;
-  margin: 0px auto;
+  margin-left: 16px;
   gap: 16px;
 
   figure {
-    margin-left: 16px;
   }
 `;
 
