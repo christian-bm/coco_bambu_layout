@@ -24,6 +24,6 @@ export const StyledDiv = styled.div`
   img {
     width: 30px;
     height: 30px;
-    margin-right: 5px;
+    margin: 5px;
   }
 `;
