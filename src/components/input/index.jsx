@@ -1,10 +1,10 @@
 import { StyledDiv } from "./styles";
 
-const Input = ({ isSearch, iconImage, ...rest }) => {
+const Input = ({ isSearch, iconImage, register, name, ...rest }) => {
   return (
     <StyledDiv isSearch={isSearch}>
       <img src={iconImage} alt='icon input' />
-      <input {...rest} />
+      <input {...register(name)} {...rest} />
     </StyledDiv>
   );
 };
