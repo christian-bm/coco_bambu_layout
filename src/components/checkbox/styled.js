@@ -14,15 +14,16 @@ export const CheckboxContainer = styled.div`
 export const DivContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 4px;
+  padding-top: 8px;
   margin-left: 20px;
+  width: 83%;
 `;
 
 export const InputCheckbox = styled.input.attrs({ type: "checkbox" })`
   overflow: hidden;
   white-space: nowrap;
-  width: 1px;
-  height: 1px;
+  width: 0px;
+  height: 0px;
   margin: -1px;
   padding: 0;
 `;

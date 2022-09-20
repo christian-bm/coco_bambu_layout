@@ -13,5 +13,14 @@ export const StyledMain = styled.main`
 `;
 
 export const StyledDiv = styled.div`
+  width: 100%;
   max-width: 1440px;
+
+  .li_not-found {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;

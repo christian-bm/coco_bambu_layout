@@ -38,7 +38,9 @@ const Solicitations = () => {
                 <CardSolicitation key={value._id} object={value} />
               ))
             ) : (
-              <span>Nenhum pedido encontrado!</span>
+              <li className="li_not-found">
+                <span>Nenhum pedido encontrado!</span>
+              </li>
             )}
           </ul>
         </StyledDiv>
