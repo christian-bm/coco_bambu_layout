@@ -10,16 +10,13 @@ import {
   DivFinish,
 } from "./styles";
 import Button from "../button";
-import { useSolicitations } from "../../providers/solicitations";
 
 const CardSolicitation = ({ object }) => {
   const [now] = useState(new Date().toLocaleDateString());
   const [date] = useState(object.time.split(" "));
-  const { setCurrentSolicitation } = useSolicitations();
   const navigate = useNavigate();
 
   const onClickFunction = () => {
-    setCurrentSolicitation(object);
     navigate(`/pedidos/${object._id}`);
   };
 
