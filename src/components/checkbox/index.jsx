@@ -21,7 +21,7 @@ const Checkbox = ({
 
   return (
     <StyledDiv onClick={!disabled ? handleCheckbox : undefined}>
-      <CheckboxContainer checked={checked}>
+      <CheckboxContainer disabled={disabled} checked={checked}>
         <IconCheckbox src={icon} alt='icon checkbox' checked={checked} />
       </CheckboxContainer>
       <DivContent>{children}</DivContent>

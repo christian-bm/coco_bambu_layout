@@ -120,15 +120,27 @@ export const DivProgress = styled.div`
 `;
 
 export const DivProgressBar = styled.div`
+  position: relative;
   margin-top: 6px;
   height: 3px;
   width: ${(props) => `${props.max * 3}0px`};
   background-color: var(--cl-white0);
 
-  div {
+  .div_color-green {
+    position: absolute;
+    z-index: 20;
     width: ${(props) =>
       `${((props.barProgress / props.max) * 100).toFixed(2)}%`};
     height: 100%;
     background-color: var(--cl-green);
+  }
+
+  .div_color-orange {
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 15px;
+    height: 100%;
+    background-color: var(--cl-orange);
   }
 `;

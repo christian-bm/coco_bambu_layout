@@ -16,4 +16,5 @@ export const StyledButton = styled.button`
   font-weight: 600;
   ${(props) => props.sec && "border-radius: 50%"}
   ${(props) => props.tec && "border-radius: 2px"}
+  ${(props) => props.disabled && "cursor: default"}
 `;

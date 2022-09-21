@@ -6,10 +6,11 @@ const CurrentSolicitationContext = createContext();
 
 export const CurrentSolicitationProvider = ({ children }) => {
   const { decodedToken } = useJwt(localStorage.getItem("@COCOBAMBU:Token"));
+
   const [currentSolicitation, setCurrentSolicitation] = useState();
+  const [preparation, setPreparation] = useState();
   const [totalIngredients, setTotalIngredients] = useState(0);
   const [totalSteps, setTotalSteps] = useState(0);
-  const [preparation, setPreparation] = useState();
 
   const findCurrentSolicitation = (id) => {
     api.get(`/solicitations/${id}`).then(({ data }) => {
@@ -30,22 +31,26 @@ export const CurrentSolicitationProvider = ({ children }) => {
       elapsed_time: time,
       solicitation_id: currentSolicitation._id,
     });
-    await api.patch(`/solicitations/${currentSolicitation._id}`, {
+    return await api.patch(`/solicitations/${currentSolicitation._id}`, {
       finished: true,
     });
+  };
+
+  const clearCurrentSolicitation = () => {
+    setCurrentSolicitation();
+    setPreparation();
   };
 
   return (
     <CurrentSolicitationContext.Provider
       value={{
         currentSolicitation,
-        setCurrentSolicitation,
-        findCurrentSolicitation,
         totalSteps,
         totalIngredients,
-        finishedCurrentSolicitation,
         preparation,
-        setPreparation,
+        finishedCurrentSolicitation,
+        findCurrentSolicitation,
+        clearCurrentSolicitation,
       }}>
       {children}
     </CurrentSolicitationContext.Provider>

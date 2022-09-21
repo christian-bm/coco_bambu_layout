@@ -8,7 +8,7 @@ export const StyledDiv = styled.div`
 export const CheckboxContainer = styled.div`
   width: 30px;
   height: 30px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 `;
 
 export const DivContent = styled.div`

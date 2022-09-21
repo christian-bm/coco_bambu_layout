@@ -11,7 +11,7 @@ export const TimeProvider = ({ children }) => {
 
   const startTimer = () => {
     let newIdInterval = setInterval(
-      () => setTimeSeconds((prevValue) => prevValue + 1),
+      () => setTimeSeconds((timeSeconds) => timeSeconds + 1),
       1000
     );
     setIdInterval(newIdInterval);
@@ -28,7 +28,7 @@ export const TimeProvider = ({ children }) => {
 
   return (
     <TimeContext.Provider
-      value={{ timeText, setTimeText, startTimer, stopTimer }}>
+      value={{ timeText, setTimeSeconds, setTimeText, startTimer, stopTimer }}>
       {children}
     </TimeContext.Provider>
   );

@@ -24,13 +24,12 @@ import Modal from "../../components/modal";
 const SolicitationDetails = () => {
   const {
     currentSolicitation,
-    setCurrentSolicitation,
     findCurrentSolicitation,
     totalSteps,
     totalIngredients,
     finishedCurrentSolicitation,
     preparation,
-    setPreparation,
+    clearCurrentSolicitation,
   } = useCurrentSolicitation();
   const {
     isOpenModalConfirm,
@@ -38,7 +37,7 @@ const SolicitationDetails = () => {
     handleModalConfirm,
     handleModalFinish,
   } = useModal();
-  const { timeText, startTimer, stopTimer } = useTime();
+  const { timeText, setTimeSeconds, startTimer, stopTimer } = useTime();
 
   const [isDisableIngredients, setIsDisableIngredients] = useState(false);
   const [isDisabledSteps, setIsDisabledSteps] = useState(true);
@@ -60,11 +59,11 @@ const SolicitationDetails = () => {
     if (totalCheckedIngredients === totalIngredients) {
       if (isStartedTime) {
         if (totalCheckedSteps === totalSteps) {
-          setIsStartedTime(false);
           stopTimer();
           handleModalFinish();
           await finishedCurrentSolicitation(timeText);
           findCurrentSolicitation(location.pathname.split("/")[2]);
+          setIsStartedTime(false);
         }
       } else {
         setIsStartedTime(true);
@@ -75,6 +74,13 @@ const SolicitationDetails = () => {
     } else {
       handleModalConfirm();
     }
+  };
+
+  const exitDetails = () => {
+    navigate("/pedidos");
+    clearCurrentSolicitation();
+    stopTimer();
+    setTimeSeconds(0);
   };
 
   useEffect(() => {
@@ -93,12 +99,7 @@ const SolicitationDetails = () => {
         {currentSolicitation ? (
           <>
             <DivHeader imgUrl={currentSolicitation.recipe.images[0].url}>
-              <button
-                onClick={() => {
-                  navigate("/pedidos");
-                  setCurrentSolicitation();
-                  setPreparation();
-                }}>
+              <button onClick={exitDetails}>
                 <img src={iconSetaBack} alt='seta voltar' /> Voltar
               </button>
               <div className='div_time'>
@@ -160,12 +161,14 @@ const SolicitationDetails = () => {
                 <DivProgressBar
                   max={totalSteps}
                   barProgress={preparation ? totalSteps : totalCheckedSteps}>
-                  <div></div>
+                  <div className='div_color-green'></div>
+                  <div className='div_color-orange'></div>
                 </DivProgressBar>
               </div>
               <Button
                 green={isStartedTime ? true : preparation ? true : false}
-                onClick={() => startAndStopTimePreparation()}>
+                onClick={() => startAndStopTimePreparation()}
+                disabled={preparation ? true : false}>
                 {isStartedTime
                   ? "Finalizar"
                   : preparation
