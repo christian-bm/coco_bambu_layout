@@ -3,7 +3,7 @@ import api from "../../services/api";
 
 const SolicitationsContext = createContext();
 
-export const SolicitationProvider = ({ children }) => {
+export const SolicitationsProvider = ({ children }) => {
   const [solicitations, setSolicitations] = useState([]);
   const [numberNewSolicitations, setNumberNewSolicitations] = useState(0);
 

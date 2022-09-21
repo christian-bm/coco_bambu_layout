@@ -19,20 +19,11 @@ export const DivContent = styled.div`
   width: 83%;
 `;
 
-export const InputCheckbox = styled.input.attrs({ type: "checkbox" })`
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0px;
-  height: 0px;
-  margin: -1px;
-  padding: 0;
-`;
-
 export const IconCheckbox = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-color: ${(props) =>
     props.checked ? "var(--cl-green)" : "var(--cl-white0)"};
-  border: 0.5px solid var(--cl-grey0);
+  border: 0.5px solid var(--cl-white1);
 `;

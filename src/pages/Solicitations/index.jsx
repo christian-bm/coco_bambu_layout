@@ -22,6 +22,10 @@ const Solicitations = () => {
   };
 
   useEffect(() => {
+    getSolicitations();
+  }, []);
+
+  useEffect(() => {
     if (!token) {
       navigate("/");
     }
@@ -38,7 +42,7 @@ const Solicitations = () => {
                 <CardSolicitation key={value._id} object={value} />
               ))
             ) : (
-              <li className="li_not-found">
+              <li className='li_not-found'>
                 <span>Nenhum pedido encontrado!</span>
               </li>
             )}

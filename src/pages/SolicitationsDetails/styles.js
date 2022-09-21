@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledMain = styled.main`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const DivHeader = styled.div`
@@ -72,6 +72,7 @@ export const DivHeader = styled.div`
     color: var(--cl-white0);
     margin-bottom: 15px;
     margin-left: 10px;
+    width: 100%;
 
     h3 {
       font-size: 20px;
@@ -101,5 +102,33 @@ export const DivPreparation = styled.div`
 
   h3 {
     margin-bottom: 30px;
+  }
+`;
+
+export const DivProgress = styled.div`
+  background-color: var(--cl-white1);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px 0px 30px;
+
+  button {
+    width: 180px;
+  }
+`;
+
+export const DivProgressBar = styled.div`
+  margin-top: 6px;
+  height: 3px;
+  width: ${(props) => `${props.max * 3}0px`};
+  background-color: var(--cl-white0);
+
+  div {
+    width: ${(props) =>
+      `${((props.barProgress / props.max) * 100).toFixed(2)}%`};
+    height: 100%;
+    background-color: var(--cl-green);
   }
 `;

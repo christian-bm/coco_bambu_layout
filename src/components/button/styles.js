@@ -5,7 +5,11 @@ export const StyledButton = styled.button`
   max-width: 300px;
   height: ${(props) => (props.sec ? "80px" : "40px")};
   background-color: ${(props) =>
-    props.tec ? "tramparent" : "var(--cl-orange)"};
+    props.tec
+      ? "tramparent"
+      : props.green
+      ? "var(--cl-green)"
+      : "var(--cl-orange)"};
   color: ${(props) => (props.tec ? "var(--cl-black)" : "var(--cl-white0)")};
   border: ${(props) => (props.tec ? "2px solid var(--cl-black)" : "none")};
   font-size: 16px;
